@@ -1,4 +1,4 @@
 /bin/
 /libs/
 /gen/
-/*.png/*.apk/*.ap_
+/*.png/*.apk/*.ap_/*.dex/*.clss/*.gradle/build//local.properties/proguard//*.log
