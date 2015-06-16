@@ -8,26 +8,16 @@
         android:id="@+id/tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="2nd Activity" />
+        android:text="3rd Activity" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/btn_3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv"
-        android:layout_marginLeft="44dp"
-        android:layout_marginTop="151dp"
+        android:layout_marginLeft="47dp"
+        android:layout_marginTop="140dp"
         android:layout_toRightOf="@+id/tv"
-        android:onClick="onClick"
-        android:text="inflate new activity" />
-
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:src="@drawable/ic_launcher"
-        
-      
-         />
+        android:text="Button" />
 
 </RelativeLayout>
