@@ -2,9 +2,11 @@ package com.example.gitandroidtest;
 
 import java.util.zip.Inflater;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.LayoutInflater;
@@ -28,9 +30,14 @@ public class SecondActivity extends Activity {
 		String str=intent.getStringExtra("Message");
 		tv=(TextView) findViewById(R.id.tv);
 		tv.setText(str);
-		getActionBar().setDisplayHomeAsUpEnabled(true);
+		
+		 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+		        ActionBar actionBar = getActionBar();
+		        actionBar.setDisplayHomeAsUpEnabled(true);
+		    }
 	    // If your minSdkVersion is 11 or higher, instead use:
 	    // getActionBar().setDisplayHomeAsUpEnabled(true);
+		//getResources().getString(R.string.hello_world);
 	}
 	
 	@Override

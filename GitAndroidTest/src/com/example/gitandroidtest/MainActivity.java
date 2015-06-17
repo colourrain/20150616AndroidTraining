@@ -3,6 +3,7 @@ package com.example.gitandroidtest;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -13,12 +14,14 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class MainActivity extends Activity implements OnClickListener {
+	final static String tag="TestTag";
 
 	EditText edit;
 	Button btn;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		Log.i(tag, "App onCreate");
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		edit = (EditText) findViewById(R.id.edit);
@@ -68,4 +71,38 @@ public class MainActivity extends Activity implements OnClickListener {
 		super.onOptionsMenuClosed(menu);
 		Toast.makeText(this, "OptionsMenuClosed", Toast.LENGTH_SHORT).show();
 	}
+	
+	
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		Log.i(tag, "App Onresume");
+	}
+	
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		Log.i(tag, "App onDestroy");
+	}
+	@Override
+	protected void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		Log.i(tag, "App onPause");
+	}
+	@Override
+	protected void onStart() {
+		// TODO Auto-generated method stub
+		super.onStart();
+		Log.i(tag, "App onStart");
+	}
+	@Override
+	protected void onStop() {
+		// TODO Auto-generated method stub
+		super.onStop();
+		Log.i(tag, "App onStop");
+	}
+	
 }
