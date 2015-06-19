@@ -27,13 +27,11 @@ public class MainActivity extends Activity implements OnClickListener {
 		edit = (EditText) findViewById(R.id.edit);
 		btn = (Button) findViewById(R.id.btn_send);
 		btn.setOnClickListener(this);
-
 	}
 
 	@Override
 	public void onClick(View v) {
-		Toast.makeText(MainActivity.this, edit.getText().toString(),
-				Toast.LENGTH_SHORT).show();
+		//Toast.makeText(MainActivity.this, edit.getText().toString(),Toast.LENGTH_SHORT).show();
 		Intent intent = new Intent(MainActivity.this, SecondActivity.class);
 		intent.putExtra("Message", edit.getText().toString());
 		startActivity(intent);
@@ -49,8 +47,7 @@ public class MainActivity extends Activity implements OnClickListener {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		// TODO Auto-generated method stub
-		
+	
 		switch (item.getItemId())
 		{
 		case R.id.action_search:
