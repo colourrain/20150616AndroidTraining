@@ -18,6 +18,6 @@
         android:layout_marginLeft="47dp"
         android:layout_marginTop="140dp"
         android:layout_toRightOf="@+id/tv"
-        android:text="Button" />
+        android:text="button" />
 
 </RelativeLayout>

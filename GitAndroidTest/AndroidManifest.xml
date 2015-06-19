@@ -28,12 +28,17 @@
             android:name=".SecondActivity"
             android:label="@string/title_activity_second"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/CustomActionBarTheme">
+            android:theme="@style/CustomActionBarTheme" >
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
+        </activity>
+        <activity
+            android:name="com.example.gitandroidtest.FourthActivity"
+            android:icon="@drawable/abc_btn_radio_material"
+            android:label="Fragment Management" >
         </activity>
     </application>
 

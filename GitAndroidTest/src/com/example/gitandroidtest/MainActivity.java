@@ -104,5 +104,20 @@ public class MainActivity extends Activity implements OnClickListener {
 		super.onStop();
 		Log.i(tag, "App onStop");
 	}
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		// TODO Auto-generated method stub
+		super.onSaveInstanceState(outState);
+		Log.i(tag, "onSaveInstanceState");
+		outState.putString("testbundle", "onSaveInstancestate saved");
+	}
+	
+	@Override
+	protected void onRestoreInstanceState(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onRestoreInstanceState(savedInstanceState);
+		Log.i(tag, savedInstanceState.getString("testbundle"));
+		Log.i(tag, "onRestoreInstanceState");
+	}
 	
 }
