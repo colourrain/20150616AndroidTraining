@@ -32,10 +32,7 @@ public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			
 			@Override
 			public void onClick(View v) {
-				FragmentManager fm = getFragmentManager();
-				FragmentTransaction fmt = fm.beginTransaction();
-				fmt.replace(R.id.fragment_1,new Fragement_Second());
-				fmt.commit();
+
 			}
 		});
 		

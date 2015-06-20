@@ -31,10 +31,7 @@ public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			
 			@Override
 			public void onClick(View v) {
-				FragmentManager fm = getFragmentManager();
-				FragmentTransaction fmt = fm.beginTransaction();
-				fmt.remove(fm.findFragmentById(R.id.frament3));
-				fmt.commit();
+
 			}
 		});
 		

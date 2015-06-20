@@ -2,3 +2,4 @@
 /libs/
 /gen/
 /*.png/*.apk/*.ap_/*.dex/*.clss/*.gradle/build//local.properties/proguard//*.log
+/project.properties
