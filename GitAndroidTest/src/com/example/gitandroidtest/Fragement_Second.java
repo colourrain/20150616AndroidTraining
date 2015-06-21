@@ -5,12 +5,14 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class Fragement_Second extends Fragment {
 
@@ -31,7 +33,11 @@ public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			
 			@Override
 			public void onClick(View v) {
-
+				SharedPreferences sp=getActivity().getSharedPreferences("bobo", getActivity().MODE_PRIVATE);
+				String message=sp.getString("fragment", "not get message from sharepreference");
+				Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+				
+				
 			}
 		});
 		

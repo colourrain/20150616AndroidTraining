@@ -5,6 +5,8 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,6 +38,10 @@ public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			@Override
 			public void onClick(View v) {
 				Toast.makeText(getActivity(), "Test", 1000).show();
+				SharedPreferences sp=getActivity().getSharedPreferences("bobo", getActivity().MODE_PRIVATE);
+				Editor edit = sp.edit();
+				edit.putString("fragment", "from fragment1");
+				edit.commit();
 				
 			}
 		});
