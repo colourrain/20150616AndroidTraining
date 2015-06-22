@@ -1,42 +1,180 @@
 package com.example.gitandroidtest;
 
+import java.io.File;
+import java.util.List;
+
 import android.animation.Animator;
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.preference.PreferenceManager.OnActivityResultListener;
+import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
-public class Fragement_Third extends Fragment {
+public class Fragement_Third extends Fragment implements OnClickListener {
+	public Activity context = getActivity();
+	final static int PICK_CONTACT_REQUEST=1;
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		View view = inflater
+				.inflate(R.layout.fragement_third, container, false);
+		return view;
+	}
 
-	
-@Override
-public View onCreateView(LayoutInflater inflater, ViewGroup container,
-		Bundle savedInstanceState) {
-	View view=inflater.inflate(R.layout.fragement_third, container,false);
-	return view;
-}
-
-@Override
+	@Override
 	public void onStart() {
 		// TODO Auto-generated method stub
 		super.onStart();
-		Button btn_3=(Button) getActivity().findViewById(R.id.btn_fragment3);
-		btn_3.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
+		Button btn_3 = (Button) getActivity().findViewById(R.id.btn_fragment3);
+		Button btn_phonecall = (Button) getActivity().findViewById(
+				R.id.btn_fragment3_phonecall);
+		Button btn_map = (Button) getActivity().findViewById(
+				R.id.btn_fragment3_map);
+		Button btn_web = (Button) getActivity().findViewById(
+				R.id.btn_fragment3_web);
+		Button btn_cam = (Button) getActivity().findViewById(
+				R.id.btn_fragment3_cam);
+		Button btn_chooser = (Button) getActivity().findViewById(
+				R.id.btn_fragment3_chooser);
+		Button btn_contact = (Button) getActivity().findViewById(
+				R.id.btn_fragment3_contact);
+		btn_3.setOnClickListener(this);
+		btn_phonecall.setOnClickListener(this);
+		btn_map.setOnClickListener(this);
+		btn_web.setOnClickListener(this);
+		btn_cam.setOnClickListener(this);
+		btn_chooser.setOnClickListener(this);
+		btn_contact.setOnClickListener(this);
+	}
 
+	@Override
+	public void onClick(View v) {
+		Intent intent = null;
+		
+		switch (v.getId()) {
+		case R.id.btn_fragment3:
+			String env = Environment.getExternalStorageState();
+			// Toast.makeText(getActivity(), "External stoarage state is " +
+			// env, Toast.LENGTH_SHORT).show();
+			// File file = new File(getActivity().getFilesDir(),
+			// "filetest");
+			// Log.i("test","file " + file.exists());
+
+			File file = new File(getActivity().getExternalFilesDir(null),
+					"BoboApp");
+			if (!file.exists()) {
+				if (!file.mkdirs()) {
+					Toast.makeText(getActivity(), "build folder failure",
+							Toast.LENGTH_SHORT).show();
+				} else {
+					Toast.makeText(getActivity(), "build folder success",
+							Toast.LENGTH_SHORT).show();
+				}
+			} else {
+				Toast.makeText(getActivity(), "folder exist",
+						Toast.LENGTH_SHORT).show();
+				file.delete();
+				Toast.makeText(getActivity(), "folder deleted",
+						Toast.LENGTH_SHORT).show();
 			}
-		});
+			break;
+		case R.id.btn_fragment3_phonecall:
+			Uri phone = Uri.parse("tel:021-62525955");
+			intent = new Intent(Intent.ACTION_DIAL, phone);
+
+			break;
+		case R.id.btn_fragment3_map:
+			Uri location = Uri
+					.parse("geo:0,0?q=1600+Amphitheatre+Parkway,+Mountain+View,+California");
+			intent = new Intent(Intent.ACTION_VIEW, location);
+
+			break;
+		case R.id.btn_fragment3_web:
+			Uri webpage = Uri.parse("http://www.baidu.com");
+			intent = new Intent(Intent.ACTION_VIEW, webpage);
+			
+			break;
+		case R.id.btn_fragment3_cam:
+			Intent intent2 = new Intent(Intent.ACTION_PICK);
+			intent2.setType("image/jpg");
+			startActivityForResult(intent2,2);
+			break;
+		case R.id.btn_fragment3_chooser:
+			Intent intent1 = new Intent(Intent.ACTION_SEND);
+			intent1.putExtra(Intent.EXTRA_TEXT, "this is waht i want to share");
+			intent1.setType("text/plain");
+			Intent chooser = Intent.createChooser(intent1, "share");
+			startActivity(chooser);
+			break;
+		case R.id.btn_fragment3_contact:
+			Intent intentcontact=new Intent(Intent.ACTION_PICK,Uri.parse("content://contacts"));
+			intentcontact.setType(Phone.CONTENT_TYPE);
+			startActivityForResult(intentcontact, PICK_CONTACT_REQUEST);
+		default:
+			break;
+		}
+		if (intent != null) {
+			PackageManager packageManager = getActivity().getPackageManager();
+			List<ResolveInfo> activities = packageManager
+					.queryIntentActivities(intent, 0);
+			boolean isIntentSafe = activities.size() > 0;
+
+			// Start an activity if it's safe
+			if (isIntentSafe) {
+				startActivity(intent);
+			}
+		}
+		
+
+	}
+	
+	
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		super.onActivityResult(requestCode, resultCode, data);
+		switch (requestCode) {
+		case PICK_CONTACT_REQUEST:
+			
+			if(resultCode==Activity.RESULT_OK){
+				Uri phone=data.getData();
+				String[] projection = {Phone.NUMBER};
+				Cursor cursor=getActivity().getContentResolver().query(phone, projection, null,null,null);
+				int column = cursor.getColumnIndex(Phone.NUMBER);
+				cursor.moveToFirst();
+	            String number = cursor.getString(column);
+				Toast.makeText(getActivity(), "phone num"+number, Toast.LENGTH_SHORT).show();
+			}
+			
+			break;
+		case 2:
+			Toast.makeText(getActivity(), data.toString(), Toast.LENGTH_SHORT).show();
+			break;
+		default:
+			break;
+		}
+		
 		
 		
 	}
-
+	
+	
 }

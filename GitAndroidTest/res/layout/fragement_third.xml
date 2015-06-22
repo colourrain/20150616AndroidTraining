@@ -21,5 +21,34 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Button" />
-
+ <Button
+        android:id="@+id/btn_fragment3_phonecall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Call me" />
+  <Button
+        android:id="@+id/btn_fragment3_map"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Map" />
+   <Button
+        android:id="@+id/btn_fragment3_web"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Web" />
+    <Button
+        android:id="@+id/btn_fragment3_cam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="file" />
+     <Button
+        android:id="@+id/btn_fragment3_chooser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="chooser" />
+      <Button
+        android:id="@+id/btn_fragment3_contact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="pick contact" />
 </LinearLayout>

@@ -38,6 +38,7 @@ public class SecondActivity extends Activity {
 			ActionBar actionBar = getActionBar();
 			actionBar.setDisplayHomeAsUpEnabled(true);
 		}
+		
 		// If your minSdkVersion is 11 or higher, instead use:
 		// getActionBar().setDisplayHomeAsUpEnabled(true);
 		// getResources().getString(R.string.hello_world);
@@ -61,6 +62,14 @@ public class SecondActivity extends Activity {
 			return true;
 		case R.id.action_always:
 			Toast.makeText(this, "Always", Toast.LENGTH_SHORT).show();
+			return true;
+		case android.R.id.home:
+			Intent intentback=new Intent();
+			intentback.putExtra("fragment1", "return message");
+			setResult(1, intentback);
+			Toast.makeText(SecondActivity.this, "Back", Toast.LENGTH_SHORT).show();
+			Log.i("test","return");
+			finish();
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);

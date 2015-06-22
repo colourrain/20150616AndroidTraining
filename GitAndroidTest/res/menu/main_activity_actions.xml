@@ -14,9 +14,11 @@
         android:showAsAction="always"
         android:title="always"/>
     <item
-        android:id="@+id/action_never"
-        android:showAsAction="never"
-        android:title="never"/>
+        android:id="@+id/action_share"
+        android:showAsAction="ifRoom"
+        android:title="share"
+        android:actionProviderClass="android.widget.ShareActionProvider"
+        />
     <item
         android:id="@+id/action_withText"
         android:icon="@drawable/abc_ic_search_api_mtrl_alpha"

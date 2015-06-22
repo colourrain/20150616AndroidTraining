@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ShareActionProvider;
 import android.widget.Toast;
 
 public class MainActivity extends Activity implements OnClickListener {
@@ -34,7 +35,17 @@ public class MainActivity extends Activity implements OnClickListener {
 		//Toast.makeText(MainActivity.this, edit.getText().toString(),Toast.LENGTH_SHORT).show();
 		Intent intent = new Intent(MainActivity.this, SecondActivity.class);
 		intent.putExtra("Message", edit.getText().toString());
-		startActivity(intent);
+		startActivityForResult(intent, 1);
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		Log.i("test", "ResultCode=" + resultCode + "data=" + data);
+		if(resultCode==1){
+		Bundle bundle = data.getExtras();
+		edit.setText(bundle.getString("fragment1"));
+		}
 	}
 
 	@Override
@@ -42,8 +53,17 @@ public class MainActivity extends Activity implements OnClickListener {
 		// Inflate the menu items for use in the action bar
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.main_activity_actions, menu);
-		return super.onCreateOptionsMenu(menu);
+		 MenuItem item = menu.findItem(R.id.action_share);
+
+		    // Fetch and store ShareActionProvider
+		    ShareActionProvider mShareActionProvider = (ShareActionProvider) item.getActionProvider();
+
+		    // Return true to display menu
+		    return true;
+
 	}
+	
+	
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -55,6 +75,14 @@ public class MainActivity extends Activity implements OnClickListener {
 			return true;
 		case R.id.action_always:
 			Toast.makeText(this, "Always", Toast.LENGTH_SHORT).show();
+			return true;
+		case R.id.action_share:
+			Toast.makeText(this, "Share", Toast.LENGTH_SHORT).show();
+			Intent intent1 = new Intent(Intent.ACTION_SEND);
+			intent1.putExtra(Intent.EXTRA_TEXT, "this is waht i want to share");
+			intent1.setType("text/plain");
+			Intent chooser = Intent.createChooser(intent1, "share");
+			startActivity(chooser);
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
