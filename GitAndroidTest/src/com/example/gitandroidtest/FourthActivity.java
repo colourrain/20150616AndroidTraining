@@ -62,7 +62,7 @@ public class FourthActivity extends Activity implements OnCheckedChangeListener{
 				fmt.replace(R.id.fragment_dynamic, new Fragement_Third());
 				break;
 			case R.id.radio_4:
-
+				fmt.replace(R.id.fragment_dynamic, new Fragement_Fourth());
 				break;
 			default:
 				break;

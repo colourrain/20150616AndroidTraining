@@ -1,6 +1,9 @@
 package com.example.gitandroidtest;
 
 import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import android.animation.Animator;
@@ -15,22 +18,30 @@ import android.content.pm.ResolveInfo;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager.OnActivityResultListener;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 public class Fragement_Third extends Fragment implements OnClickListener {
 	public Activity context = getActivity();
 	final static int PICK_CONTACT_REQUEST=1;
+	static final int CAMERA_CAPTURE_REQUEST=3;
+	static final int VIDEO_CAPTURE_REQUEST=4;
+	VideoView video;
+	ImageView iv;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -56,6 +67,10 @@ public class Fragement_Third extends Fragment implements OnClickListener {
 				R.id.btn_fragment3_chooser);
 		Button btn_contact = (Button) getActivity().findViewById(
 				R.id.btn_fragment3_contact);
+		Button btn_video=(Button) getActivity().findViewById(R.id.btn_fragment3_video);
+		iv=(ImageView) getActivity().findViewById(R.id.fragment3_tv);
+		video=(VideoView) getActivity().findViewById(R.id.fragment3_video);
+		
 		btn_3.setOnClickListener(this);
 		btn_phonecall.setOnClickListener(this);
 		btn_map.setOnClickListener(this);
@@ -63,6 +78,7 @@ public class Fragement_Third extends Fragment implements OnClickListener {
 		btn_cam.setOnClickListener(this);
 		btn_chooser.setOnClickListener(this);
 		btn_contact.setOnClickListener(this);
+		btn_video.setOnClickListener(this);
 	}
 
 	@Override
@@ -113,9 +129,22 @@ public class Fragement_Third extends Fragment implements OnClickListener {
 			
 			break;
 		case R.id.btn_fragment3_cam:
-			Intent intent2 = new Intent(Intent.ACTION_PICK);
-			intent2.setType("image/jpg");
-			startActivityForResult(intent2,2);
+			File imagefile = null;
+			Intent intent_cam=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+			if(intent_cam.resolveActivity(getActivity().getPackageManager())!=null){
+				try {
+					imagefile=createImageFile();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				if(imagefile!=null){
+					//intent_cam.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(imagefile));
+				}
+
+				startActivityForResult(intent_cam, CAMERA_CAPTURE_REQUEST);
+			}
+			
 			break;
 		case R.id.btn_fragment3_chooser:
 			Intent intent1 = new Intent(Intent.ACTION_SEND);
@@ -128,6 +157,17 @@ public class Fragement_Third extends Fragment implements OnClickListener {
 			Intent intentcontact=new Intent(Intent.ACTION_PICK,Uri.parse("content://contacts"));
 			intentcontact.setType(Phone.CONTENT_TYPE);
 			startActivityForResult(intentcontact, PICK_CONTACT_REQUEST);
+		case R.id.btn_fragment3_video:
+			new Thread(new Runnable() {
+				
+				@Override
+				public void run() {
+					Intent intent_video=new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+					startActivityForResult(intent_video, VIDEO_CAPTURE_REQUEST);
+				}
+			}).start();
+			
+			
 		default:
 			break;
 		}
@@ -165,15 +205,39 @@ public class Fragement_Third extends Fragment implements OnClickListener {
 			}
 			
 			break;
-		case 2:
-			Toast.makeText(getActivity(), data.toString(), Toast.LENGTH_SHORT).show();
+		case CAMERA_CAPTURE_REQUEST:
+			//Toast.makeText(getActivity(), data.toString(), Toast.LENGTH_SHORT).show();
+			Bundle bundle=data.getExtras();
+			Bitmap bitmap=(Bitmap) bundle.get("data");
+			iv.setImageBitmap(bitmap);
 			break;
+		case VIDEO_CAPTURE_REQUEST:
+			Uri videoUri = data.getData();
+	        video.setVideoURI(videoUri);
 		default:
 			break;
 		}
 		
 		
 		
+	}
+	String mCurrentPhotoPath;
+
+	private File createImageFile() throws IOException {
+	    // Create an image file name
+	    String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+	    String imageFileName = "JPEG_" + timeStamp + "_";
+	    File storageDir = Environment.getExternalStoragePublicDirectory(
+	            Environment.DIRECTORY_PICTURES);
+	    File image = File.createTempFile(
+	        imageFileName,  /* prefix */
+	        ".jpg",         /* suffix */
+	        storageDir      /* directory */
+	    );
+
+	    // Save a file: path for use with ACTION_VIEW intents
+	    mCurrentPhotoPath = "file:" + image.getAbsolutePath();
+	    return image;
 	}
 	
 	
