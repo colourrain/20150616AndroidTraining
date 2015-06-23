@@ -24,12 +24,15 @@ import android.webkit.WebView.FindListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 public class Fragement_Fourth extends Fragment {
 	ImageView iv;
 	EditText edit;
 
+	
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -45,6 +48,18 @@ public class Fragement_Fourth extends Fragment {
 		iv = (ImageView) getActivity().findViewById(R.id.fragment4_iv);
 		edit = (EditText) getActivity().findViewById(R.id.fragment4_edit);
 		Button btn = (Button) getActivity().findViewById(R.id.btn_fragment4);
+		Button btn_pic=(Button) getActivity().findViewById(R.id.btn_fragment4_addpic);
+		final LinearLayout ly=(LinearLayout) getActivity().findViewById(R.id.frament4);
+		btn_pic.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				ImageView iv2=new ImageView(getActivity());
+				iv2.setImageDrawable(getResources().getDrawable(R.drawable.tulips));
+				ly.addView(iv2);
+				
+			}
+		});
 
 		btn.setOnClickListener(new OnClickListener() {
 
@@ -126,8 +141,8 @@ public class Fragement_Fourth extends Fragment {
 		@Override
 		protected Bitmap doInBackground(Integer... params) {
 			data = params[0];
-			Bitmap bitmap=decodeSampledBitmapFromResource(getResources(), data, 100,
-					100);
+			Bitmap bitmap=decodeSampledBitmapFromResource(getResources(), data, Integer.parseInt(edit.getText().toString()),
+					Integer.parseInt(edit.getText().toString()));
 			addBitmapToMemoryCache(String.valueOf(params[0]), bitmap);
 			return bitmap;
 		}
@@ -152,6 +167,7 @@ public class Fragement_Fourth extends Fragment {
 		// Get max available VM memory, exceeding this amount will throw an
 		// OutOfMemory exception. Stored in kilobytes as LruCache takes an
 		// int in its constructor.
+		super.onCreate(savedInstanceState);
 		final int maxMemory = (int) (Runtime.getRuntime().maxMemory() / 1024);
 
 		// Use 1/8th of the available memory for this memory cache.
