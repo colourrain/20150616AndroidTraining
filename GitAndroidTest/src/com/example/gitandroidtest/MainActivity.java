@@ -84,6 +84,8 @@ public class MainActivity extends Activity implements OnClickListener {
 			Intent chooser = Intent.createChooser(intent1, "share");
 			startActivity(chooser);
 			return true;
+		case R.id.action_withText:
+			startActivity(new Intent("AA"));
 		default:
 			return super.onOptionsItemSelected(item);
 		}

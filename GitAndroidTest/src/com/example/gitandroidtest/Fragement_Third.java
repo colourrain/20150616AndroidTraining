@@ -19,6 +19,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -67,6 +69,8 @@ public class Fragement_Third extends Fragment implements OnClickListener {
 				R.id.btn_fragment3_chooser);
 		Button btn_contact = (Button) getActivity().findViewById(
 				R.id.btn_fragment3_contact);
+		Button btn_internet = (Button) getActivity().findViewById(
+				R.id.btn_fragment3_internet);
 		Button btn_video=(Button) getActivity().findViewById(R.id.btn_fragment3_video);
 		iv=(ImageView) getActivity().findViewById(R.id.fragment3_tv);
 		video=(VideoView) getActivity().findViewById(R.id.fragment3_video);
@@ -79,6 +83,7 @@ public class Fragement_Third extends Fragment implements OnClickListener {
 		btn_chooser.setOnClickListener(this);
 		btn_contact.setOnClickListener(this);
 		btn_video.setOnClickListener(this);
+		btn_internet.setOnClickListener(this);
 	}
 
 	@Override
@@ -166,7 +171,10 @@ public class Fragement_Third extends Fragment implements OnClickListener {
 					startActivityForResult(intent_video, VIDEO_CAPTURE_REQUEST);
 				}
 			}).start();
-			
+		case R.id.btn_fragment3_internet:
+			startActivity(new Intent("AA"));
+
+			break;
 			
 		default:
 			break;
