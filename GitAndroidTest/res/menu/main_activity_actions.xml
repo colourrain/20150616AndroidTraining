@@ -28,12 +28,12 @@
             <item
                 android:id="@+id/action_sub1"
                 android:icon="@android:drawable/ic_menu_sort_by_size"
-                android:title="Sub1"/>
+                android:title="Load Internet Resource"/>
             <item
                 android:id="@+id/action_sub2"
                 android:icon="@android:drawable/ic_menu_sort_alphabetically"
               
-                android:title="Sub2"/>
+                android:title="Net Activity"/>
         </menu>
     </item>
     <item

@@ -46,6 +46,7 @@ public class FifthActivity extends Activity implements OnClickListener {
 		setContentView(R.layout.activity_fifth_internet);
 		tv = (TextView) findViewById(R.id.txt_fifth);
 		edit = (EditText) findViewById(R.id.edit);
+		iv=(ImageView) findViewById(R.id.image_fifth);
 
 		btn = (Button) findViewById(R.id.btn_send);
 		btn_image = (Button) findViewById(R.id.btn_image);
@@ -117,6 +118,7 @@ public class FifthActivity extends Activity implements OnClickListener {
 		conn.setReadTimeout(10000 /* milliseconds */);
 		conn.setConnectTimeout(15000 /* milliseconds */);
 		conn.setDoInput(true);
+		conn.setDoOutput(true);
 		conn.setRequestMethod("GET");
 		// Starts the query
 		conn.connect();
@@ -150,6 +152,7 @@ public class FifthActivity extends Activity implements OnClickListener {
 		conn.setReadTimeout(10000 /* milliseconds */);
 		conn.setConnectTimeout(15000 /* milliseconds */);
 		conn.setDoInput(true);
+		conn.setDoOutput(true);
 		conn.setRequestMethod("GET");
 		// Starts the query
 		conn.connect();

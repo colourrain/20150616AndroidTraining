@@ -35,7 +35,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:text="http://svw.csvw.com/emp_webseal/images/tiguanyeti22.jpg"
+        android:text="http://172.26.188.46:8080/TestAndroid/Desert.jpg"
          >
 
         <requestFocus />

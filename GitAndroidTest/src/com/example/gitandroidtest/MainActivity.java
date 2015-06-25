@@ -1,7 +1,10 @@
 package com.example.gitandroidtest;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -84,8 +87,22 @@ public class MainActivity extends Activity implements OnClickListener {
 			Intent chooser = Intent.createChooser(intent1, "share");
 			startActivity(chooser);
 			return true;
-		case R.id.action_withText:
+		case R.id.action_sub1:
 			startActivity(new Intent("AA"));
+			return true;
+		case R.id.action_sub2:
+			
+			ConnectivityManager cm=(ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+			NetworkInfo netinfo = cm.getActiveNetworkInfo();
+			Log.i("test","network is " + netinfo.getTypeName());
+			Log.i("test","network is " + netinfo.isConnected());
+			NetworkInfo mobileInfo = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+			NetworkInfo wifiInfo = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+			
+			Log.i("test","wifi is " + wifiInfo.isConnected());
+		
+			return true;
+			
 		default:
 			return super.onOptionsItemSelected(item);
 		}
