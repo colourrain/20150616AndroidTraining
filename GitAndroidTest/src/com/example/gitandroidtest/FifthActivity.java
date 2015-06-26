@@ -9,11 +9,26 @@ import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.HashMap;
+import java.util.Map;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request.Method;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.Response.Listener;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.ImageRequest;
+import com.android.volley.toolbox.NetworkImageView;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -36,9 +51,10 @@ public class FifthActivity extends Activity implements OnClickListener {
 	final static String tag = "TestTag";
 
 	TextView tv;
-	Button btn, btn_image;
+	Button btn, btn_image, btn_volley, btn_image_volley,btn_networkimage;
 	EditText edit;
 	ImageView iv;
+	NetworkImageView niv;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -46,12 +62,20 @@ public class FifthActivity extends Activity implements OnClickListener {
 		setContentView(R.layout.activity_fifth_internet);
 		tv = (TextView) findViewById(R.id.txt_fifth);
 		edit = (EditText) findViewById(R.id.edit);
-		iv=(ImageView) findViewById(R.id.image_fifth);
+		iv = (ImageView) findViewById(R.id.image_fifth);
+		niv=(NetworkImageView) findViewById(R.id.networkiv);
 
 		btn = (Button) findViewById(R.id.btn_send);
+		btn_volley = (Button) findViewById(R.id.btn_send_volley);
+
 		btn_image = (Button) findViewById(R.id.btn_image);
+		btn_image_volley = (Button) findViewById(R.id.btn_image_volley);
+		btn_networkimage=(Button) findViewById(R.id.btn_networkimage_volley);
 		btn_image.setOnClickListener(this);
+		btn_volley.setOnClickListener(this);
 		btn.setOnClickListener(this);
+		btn_image_volley.setOnClickListener(this);
+		btn_networkimage.setOnClickListener(this);
 	}
 
 	@Override
@@ -71,6 +95,37 @@ public class FifthActivity extends Activity implements OnClickListener {
 						Toast.LENGTH_SHORT).show();
 			}
 			break;
+		case R.id.btn_send_volley:
+			//RequestQueue queue = Volley.newRequestQueue(this);
+			//RequestQueue queue=MySingleton.getInstance(getApplicationContext()).getRequestQueue();
+			
+			StringRequest strQ = new StringRequest(Method.GET, edit.getText()
+					.toString(), new Response.Listener<String>() {
+
+				@Override
+				public void onResponse(String response) {
+					tv.setText(response.substring(0, 10));
+				}
+			}, new Response.ErrorListener() {
+
+				@Override
+				public void onErrorResponse(VolleyError error) {
+					tv.setText(error.toString());
+				}
+			}) {
+				@Override
+				protected Map<String, String> getParams()
+						throws AuthFailureError {
+					Map<String, String> map = new HashMap<String, String>();
+					map.put("params1", "value1");
+					map.put("params2", "value2");
+					return map;
+				}
+			};
+
+			//queue.add(strQ);
+			MySingleton.getInstance(getApplicationContext()).addToRequestQueue(strQ);
+			break;
 
 		case R.id.btn_image:
 			cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -83,7 +138,32 @@ public class FifthActivity extends Activity implements OnClickListener {
 						Toast.LENGTH_SHORT).show();
 			}
 			break;
+		case R.id.btn_image_volley:
+			ImageRequest imgQ=new ImageRequest(edit.getText()
+					.toString(), new Response.Listener<Bitmap>() {
 
+				@Override
+				public void onResponse(Bitmap response) {
+					iv.setImageBitmap(response);
+					
+				}
+			}, 0, 0, Config.RGB_565, new Response.ErrorListener() {
+
+				@Override
+				public void onErrorResponse(VolleyError error) {
+					Toast.makeText(FifthActivity.this, "Load Failure" + error.toString(), Toast.LENGTH_SHORT).show();
+				}
+			});
+			//Volley.newRequestQueue(FifthActivity.this).add(imgQ);
+			//RequestQueue rq=MySingleton.getInstance(getApplicationContext()).getRequestQueue();
+			MySingleton.getInstance(getApplicationContext()).addToRequestQueue(imgQ);
+			break;
+			
+		case R.id.btn_networkimage_volley:
+			ImageLoader imageloader = MySingleton.getInstance(getApplicationContext()).getImageLoader();
+			//imageloader.get(requestUrl, imageListener, maxWidth, maxHeight)
+			niv.setImageUrl(edit.getText().toString(), imageloader);
+			break;
 		default:
 			break;
 		}
@@ -181,10 +261,10 @@ public class FifthActivity extends Activity implements OnClickListener {
 		@Override
 		protected void onPostExecute(Bitmap result) {
 			if (result != null) {
-				Log.i("Test","image loaded");
+				Log.i("Test", "image loaded");
 				iv.setImageBitmap(result);
-			}else{
-				Log.i("Test","image not loaded");
+			} else {
+				Log.i("Test", "image not loaded");
 			}
 
 		}
