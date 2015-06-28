@@ -1,5 +1,8 @@
 package com.example.gitandroidtest;
 
+import com.example.gitandroidtest.contacts.Activity_Contact;
+
+import android.animation.Animator.AnimatorListener;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -10,10 +13,17 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridView;
+import android.widget.ListAdapter;
 import android.widget.ShareActionProvider;
 import android.widget.Toast;
 
@@ -22,6 +32,7 @@ public class MainActivity extends Activity implements OnClickListener {
 
 	EditText edit;
 	Button btn;
+	GridView gv;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +40,29 @@ public class MainActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		edit = (EditText) findViewById(R.id.edit);
+		gv=(GridView) findViewById(R.id.gv_main);
+		final String[] datas={"Access Contact","b","c","d","e","f"};
+		ListAdapter adapter=new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, datas);
+		
+		gv.setAdapter(adapter);
+		gv.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				switch (datas[position]) {
+				case "Access Contact":
+					startActivity(new Intent(MainActivity.this, Activity_Contact.class));
+					break;
+				case "b":
+					Toast.makeText(MainActivity.this, datas[position], Toast.LENGTH_SHORT).show();
+					break;
+				default:
+					break;
+				}
+				
+			}
+		});
 		btn = (Button) findViewById(R.id.btn_send);
 		btn.setOnClickListener(this);
 	}
@@ -162,6 +196,13 @@ public class MainActivity extends Activity implements OnClickListener {
 		super.onRestoreInstanceState(savedInstanceState);
 		Log.i(tag, savedInstanceState.getString("testbundle"));
 		Log.i(tag, "onRestoreInstanceState");
+	}
+	@Override
+	public boolean onTouchEvent(MotionEvent event) {
+		InputMethodManager im=(InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+		im.hideSoftInputFromWindow(getCurrentFocus().getApplicationWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+		
+		return super.onTouchEvent(event);
 	}
 	
 }
