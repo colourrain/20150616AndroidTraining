@@ -1,6 +1,6 @@
 package com.example.gitandroidtest;
 
-import com.example.gitandroidtest.contacts.Activity_Contact;
+import com.example.gitandroidtest.contacts.Activity_Contact_Search;
 
 import android.animation.Animator.AnimatorListener;
 import android.app.Activity;
@@ -52,7 +52,7 @@ public class MainActivity extends Activity implements OnClickListener {
 					int position, long id) {
 				switch (datas[position]) {
 				case "Access Contact":
-					startActivity(new Intent(MainActivity.this, Activity_Contact.class));
+					startActivity(new Intent(MainActivity.this, Activity_Contact_Search.class));
 					break;
 				case "b":
 					Toast.makeText(MainActivity.this, datas[position], Toast.LENGTH_SHORT).show();
