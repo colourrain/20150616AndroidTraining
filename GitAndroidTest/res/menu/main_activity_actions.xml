@@ -34,6 +34,11 @@
                 android:icon="@android:drawable/ic_menu_sort_alphabetically"
               
                 android:title="Net Activity"/>
+             <item
+                android:id="@+id/action_sub3"
+                android:icon="@android:drawable/dark_header"
+              
+                android:title="Location Service"/>
         </menu>
     </item>
     <item

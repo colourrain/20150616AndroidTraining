@@ -1,6 +1,7 @@
 package com.example.gitandroidtest;
 
 import com.example.gitandroidtest.contacts.Activity_Contact_Search;
+import com.example.gitandroidtest.location.Activity_Location;
 
 import android.animation.Animator.AnimatorListener;
 import android.app.Activity;
@@ -136,7 +137,11 @@ public class MainActivity extends Activity implements OnClickListener {
 			Log.i("test","wifi is " + wifiInfo.isConnected());
 		
 			return true;
-			
+			//Location service
+		case R.id.action_sub3:
+			Intent intent=new Intent(this, Activity_Location.class);
+			startActivity(intent);
+			return true;
 		default:
 			return super.onOptionsItemSelected(item);
 		}
