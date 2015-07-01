@@ -10,11 +10,19 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
 
+        <QuickContactBadge
+            android:id="@+id/badge_contact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" 
+            android:scaleType="centerCrop"
+            />
+
         <TextView
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="姓名" />
+
         <EditText
             android:id="@+id/edit_contact_search"
             android:layout_width="wrap_content"

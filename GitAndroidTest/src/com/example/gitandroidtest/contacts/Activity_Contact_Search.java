@@ -34,6 +34,7 @@ import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.QuickContactBadge;
 import android.widget.ShareActionProvider;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
@@ -59,7 +60,8 @@ public class Activity_Contact_Search extends Activity implements
 	Button btn;
 	EditText edit;
 	ListView lv;
-	SimpleCursorAdapter adapter;
+	ContactCursorAdapter adapter;
+	QuickContactBadge badge;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -69,13 +71,15 @@ public class Activity_Contact_Search extends Activity implements
 		edit = (EditText) findViewById(R.id.edit_contact_search);
 		lv = (ListView) findViewById(R.id.lv_contact);
 		btn = (Button) findViewById(R.id.btn_contact_search);
+		badge=(QuickContactBadge) findViewById(R.id.badge_contact);
 		btn.setOnClickListener(this);
-		adapter = new SimpleCursorAdapter(this,
-				android.R.layout.simple_list_item_1, null, FROM_COLUMNS,
-				TO_IDS, 0);
+		//adapter = new SimpleCursorAdapter(this,android.R.layout.simple_list_item_1, null, FROM_COLUMNS,TO_IDS, 0);
+		adapter=new ContactCursorAdapter(this, null);
 		lv.setAdapter(adapter);
 		lv.setOnItemClickListener(this);
 		lv.setOnItemLongClickListener(this);
+		
+		
 		getLoaderManager().initLoader(SEARCH_LOADER_ID, null, this);
 		// getLoaderManager().initLoader(SEARCH_DETAIL_LOADER_ID, null, this);
 		edit.setOnKeyListener(new OnKeyListener() {
@@ -137,9 +141,10 @@ public class Activity_Contact_Search extends Activity implements
 		Log.i("test", "Loader.getId=" + loader.getId());
 		switch (loader.getId()) {
 		case SEARCH_LOADER_ID:
-			Log.i("test", "SEARCH_LOADER_ID start");
+			
 			adapter.swapCursor(data);
-			Log.i("test", "SEARCH_LOADER_ID finished");
+			
+			
 			break;
 		case SEARCH_DETAIL_LOADER_ID:
 			if (Lookup_KEY != "") {

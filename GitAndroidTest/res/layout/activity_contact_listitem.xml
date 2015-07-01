@@ -2,14 +2,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     tools:context="${relativePackage}.${activityClass}" >
 
-
+ <QuickContactBadge
+            android:id="@+id/badge_contact"
+            android:layout_width="50dp"
+            android:layout_height="50dp" 
+            android:scaleType="centerCrop"
+            
+            />
         <TextView
             android:id="@+id/txt_contact_listitem"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="test"
            />
 
 </LinearLayout>
