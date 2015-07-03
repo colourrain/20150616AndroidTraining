@@ -3,6 +3,7 @@ package com.example.gitandroidtest;
 import com.example.gitandroidtest.contacts.Activity_Contact_Search;
 import com.example.gitandroidtest.drawlayout.Activity_DrawLayout;
 import com.example.gitandroidtest.location.Activity_Location;
+import com.example.gitandroidtest.notification.Activity_Notification;
 import com.example.gitandroidtest.viewpager.Activity_ViewPager;
 
 import android.animation.Animator.AnimatorListener;
@@ -44,7 +45,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		setContentView(R.layout.activity_main);
 		edit = (EditText) findViewById(R.id.edit);
 		gv = (GridView) findViewById(R.id.gv_main);
-		final String[] datas = { "Access Contact", "b", "c", "d", "e", "f" };
+		final String[] datas = { "Access Contact", "Notification", "c", "d", "e", "f" };
 		ListAdapter adapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, datas);
 
@@ -59,9 +60,11 @@ public class MainActivity extends Activity implements OnClickListener {
 					startActivity(new Intent(MainActivity.this,
 							Activity_Contact_Search.class));
 					break;
-				case "b":
-					Toast.makeText(MainActivity.this, datas[position],
-							Toast.LENGTH_SHORT).show();
+				case "Notification":
+					startActivity(new Intent(MainActivity.this,
+							Activity_Notification.class));
+					
+					
 					break;
 				default:
 					break;

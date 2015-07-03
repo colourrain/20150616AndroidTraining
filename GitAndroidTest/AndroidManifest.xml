@@ -32,7 +32,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SecondActivity"
+            android:name=".Activity_Notification"
             android:label="@string/title_activity_second"
             android:parentActivityName=".Activity_Contact_Search"
             android:theme="@style/CustomActionBarTheme" >
@@ -75,6 +75,10 @@
         </activity>
         <activity
             android:name="com.example.gitandroidtest.drawlayout.Activity_DrawLayout"
+            android:theme="@style/CustomActionBarTheme" >
+        </activity>
+         <activity
+            android:name="com.example.gitandroidtest.notification.Activity_Notification"
             android:theme="@style/CustomActionBarTheme" >
         </activity>
     </application>

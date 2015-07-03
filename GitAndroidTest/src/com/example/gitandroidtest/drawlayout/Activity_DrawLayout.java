@@ -1,11 +1,11 @@
 package com.example.gitandroidtest.drawlayout;
 
 import com.example.gitandroidtest.R;
-
 import com.example.gitandroidtest.viewpager.Fragment_for_ViewPager;
 
 import android.app.ActionBar;
 import android.os.Bundle;
+import android.provider.ContactsContract.PinnedPositions;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -55,7 +55,8 @@ public class Activity_DrawLayout extends FragmentActivity {
 		fragment.setArguments(bundle);
 
 		FragmentManager fm = getSupportFragmentManager();
-		fm.beginTransaction().replace(R.id.content_frame, fragment).commit();
+		
+		fm.beginTransaction().replace(R.id.content_frame, fragment).addToBackStack("a").commit();
 		lv.setItemChecked(position, true);
 		setTitle(list[position]);
 		mDrawerLayout.closeDrawer(lv);
@@ -78,8 +79,9 @@ public class Activity_DrawLayout extends FragmentActivity {
 			} else {
 				mDrawerLayout.openDrawer(lv);
 			}
+			
 			break;
-
+			
 		default:
 			break;
 		}
