@@ -1,7 +1,9 @@
 package com.example.gitandroidtest;
 
 import com.example.gitandroidtest.contacts.Activity_Contact_Search;
+import com.example.gitandroidtest.drawlayout.Activity_DrawLayout;
 import com.example.gitandroidtest.location.Activity_Location;
+import com.example.gitandroidtest.viewpager.Activity_ViewPager;
 
 import android.animation.Animator.AnimatorListener;
 import android.app.Activity;
@@ -29,7 +31,7 @@ import android.widget.ShareActionProvider;
 import android.widget.Toast;
 
 public class MainActivity extends Activity implements OnClickListener {
-	final static String tag="TestTag";
+	final static String tag = "TestTag";
 
 	EditText edit;
 	Button btn;
@@ -41,10 +43,11 @@ public class MainActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		edit = (EditText) findViewById(R.id.edit);
-		gv=(GridView) findViewById(R.id.gv_main);
-		final String[] datas={"Access Contact","b","c","d","e","f"};
-		ListAdapter adapter=new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, datas);
-		
+		gv = (GridView) findViewById(R.id.gv_main);
+		final String[] datas = { "Access Contact", "b", "c", "d", "e", "f" };
+		ListAdapter adapter = new ArrayAdapter<String>(this,
+				android.R.layout.simple_list_item_1, datas);
+
 		gv.setAdapter(adapter);
 		gv.setOnItemClickListener(new OnItemClickListener() {
 
@@ -53,15 +56,17 @@ public class MainActivity extends Activity implements OnClickListener {
 					int position, long id) {
 				switch (datas[position]) {
 				case "Access Contact":
-					startActivity(new Intent(MainActivity.this, Activity_Contact_Search.class));
+					startActivity(new Intent(MainActivity.this,
+							Activity_Contact_Search.class));
 					break;
 				case "b":
-					Toast.makeText(MainActivity.this, datas[position], Toast.LENGTH_SHORT).show();
+					Toast.makeText(MainActivity.this, datas[position],
+							Toast.LENGTH_SHORT).show();
 					break;
 				default:
 					break;
 				}
-				
+
 			}
 		});
 		btn = (Button) findViewById(R.id.btn_send);
@@ -70,19 +75,20 @@ public class MainActivity extends Activity implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
-		//Toast.makeText(MainActivity.this, edit.getText().toString(),Toast.LENGTH_SHORT).show();
+		// Toast.makeText(MainActivity.this,
+		// edit.getText().toString(),Toast.LENGTH_SHORT).show();
 		Intent intent = new Intent(MainActivity.this, SecondActivity.class);
 		intent.putExtra("Message", edit.getText().toString());
 		startActivityForResult(intent, 1);
 	}
-	
+
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		Log.i("test", "ResultCode=" + resultCode + "data=" + data);
-		if(resultCode==1){
-		Bundle bundle = data.getExtras();
-		edit.setText(bundle.getString("fragment1"));
+		if (resultCode == 1) {
+			Bundle bundle = data.getExtras();
+			edit.setText(bundle.getString("fragment1"));
 		}
 	}
 
@@ -91,23 +97,21 @@ public class MainActivity extends Activity implements OnClickListener {
 		// Inflate the menu items for use in the action bar
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.main_activity_actions, menu);
-		 MenuItem item = menu.findItem(R.id.action_share);
+		MenuItem item = menu.findItem(R.id.action_share);
 
-		    // Fetch and store ShareActionProvider
-		    ShareActionProvider mShareActionProvider = (ShareActionProvider) item.getActionProvider();
+		// Fetch and store ShareActionProvider
+		ShareActionProvider mShareActionProvider = (ShareActionProvider) item
+				.getActionProvider();
 
-		    // Return true to display menu
-		    return true;
+		// Return true to display menu
+		return true;
 
 	}
-	
-	
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-	
-		switch (item.getItemId())
-		{
+
+		switch (item.getItemId()) {
 		case R.id.action_search:
 			Toast.makeText(this, "Search", Toast.LENGTH_SHORT).show();
 			return true;
@@ -126,21 +130,30 @@ public class MainActivity extends Activity implements OnClickListener {
 			startActivity(new Intent("AA"));
 			return true;
 		case R.id.action_sub2:
-			
-			ConnectivityManager cm=(ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+			ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 			NetworkInfo netinfo = cm.getActiveNetworkInfo();
-			Log.i("test","network is " + netinfo.getTypeName());
-			Log.i("test","network is " + netinfo.isConnected());
-			NetworkInfo mobileInfo = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-			NetworkInfo wifiInfo = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-			
-			Log.i("test","wifi is " + wifiInfo.isConnected());
-		
+			Log.i("test", "network is " + netinfo.getTypeName());
+			Log.i("test", "network is " + netinfo.isConnected());
+			NetworkInfo mobileInfo = cm
+					.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+			NetworkInfo wifiInfo = cm
+					.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+			Log.i("test", "wifi is " + wifiInfo.isConnected());
 			return true;
-			//Location service
+			// Location service
 		case R.id.action_sub3:
-			Intent intent=new Intent(this, Activity_Location.class);
+			Intent intent = new Intent(this, Activity_Location.class);
 			startActivity(intent);
+			return true;
+			// ViewPager
+		case R.id.action_sub4:
+			Intent intent_vp = new Intent(this, Activity_ViewPager.class);
+			startActivity(intent_vp);
+			return true;
+		case R.id.action_sub5:
+			Intent intent_drawer = new Intent(this, Activity_DrawLayout.class);
+			startActivity(intent_drawer);
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
@@ -154,39 +167,42 @@ public class MainActivity extends Activity implements OnClickListener {
 		super.onOptionsMenuClosed(menu);
 		Toast.makeText(this, "OptionsMenuClosed", Toast.LENGTH_SHORT).show();
 	}
-	
-	
+
 	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
 		Log.i(tag, "App Onresume");
 	}
-	
+
 	@Override
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
 		super.onDestroy();
 		Log.i(tag, "App onDestroy");
 	}
+
 	@Override
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
 		Log.i(tag, "App onPause");
 	}
+
 	@Override
 	protected void onStart() {
 		// TODO Auto-generated method stub
 		super.onStart();
 		Log.i(tag, "App onStart");
 	}
+
 	@Override
 	protected void onStop() {
 		// TODO Auto-generated method stub
 		super.onStop();
 		Log.i(tag, "App onStop");
 	}
+
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		// TODO Auto-generated method stub
@@ -194,7 +210,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		Log.i(tag, "onSaveInstanceState");
 		outState.putString("testbundle", "onSaveInstancestate saved");
 	}
-	
+
 	@Override
 	protected void onRestoreInstanceState(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -202,12 +218,15 @@ public class MainActivity extends Activity implements OnClickListener {
 		Log.i(tag, savedInstanceState.getString("testbundle"));
 		Log.i(tag, "onRestoreInstanceState");
 	}
+
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
-		InputMethodManager im=(InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-		im.hideSoftInputFromWindow(getCurrentFocus().getApplicationWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-		
+		InputMethodManager im = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+		im.hideSoftInputFromWindow(getCurrentFocus()
+				.getApplicationWindowToken(),
+				InputMethodManager.HIDE_NOT_ALWAYS);
+
 		return super.onTouchEvent(event);
 	}
-	
+
 }

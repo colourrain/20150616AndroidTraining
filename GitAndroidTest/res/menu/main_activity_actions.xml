@@ -39,6 +39,14 @@
                 android:icon="@android:drawable/dark_header"
               
                 android:title="Location Service"/>
+              <item
+                android:id="@+id/action_sub4"
+                android:icon="@android:drawable/dark_header"
+                android:title="ViewPager"/>
+              <item
+                android:id="@+id/action_sub5"
+                android:icon="@android:drawable/dark_header"
+                android:title="Drawer"/>
         </menu>
     </item>
     <item
