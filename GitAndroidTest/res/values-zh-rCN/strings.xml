@@ -6,5 +6,6 @@
     <string name="title_activity_second">第二個Activity</string>
     <string name="action_search">查詢</string>
     <string name="action_settings">設置</string>
+     <string name="search_hint">查询</string>
 
 </resources>

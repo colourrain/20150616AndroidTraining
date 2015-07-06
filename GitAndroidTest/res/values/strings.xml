@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="app_name">GitAndroidTest</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_second">SecondActivity</string>
     <string name="action_search">Search</string>
     <string name="action_settings">Config</string>
-
+    <string name="search_hint">Input a search</string>
 </resources>

@@ -4,10 +4,12 @@ import com.example.gitandroidtest.contacts.Activity_Contact_Search;
 import com.example.gitandroidtest.drawlayout.Activity_DrawLayout;
 import com.example.gitandroidtest.location.Activity_Location;
 import com.example.gitandroidtest.notification.Activity_Notification;
+import com.example.gitandroidtest.search.Activity_Search;
 import com.example.gitandroidtest.viewpager.Activity_ViewPager;
 
 import android.animation.Animator.AnimatorListener;
 import android.app.Activity;
+import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -28,6 +30,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ListAdapter;
+import android.widget.SearchView;
+import android.widget.SearchView.OnQueryTextListener;
 import android.widget.ShareActionProvider;
 import android.widget.Toast;
 
@@ -45,7 +49,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		setContentView(R.layout.activity_main);
 		edit = (EditText) findViewById(R.id.edit);
 		gv = (GridView) findViewById(R.id.gv_main);
-		final String[] datas = { "Access Contact", "Notification", "c", "d", "e", "f" };
+		final String[] datas = { "Access Contact", "Notification", "Search", "d", "e", "f" };
 		ListAdapter adapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, datas);
 
@@ -63,8 +67,11 @@ public class MainActivity extends Activity implements OnClickListener {
 				case "Notification":
 					startActivity(new Intent(MainActivity.this,
 							Activity_Notification.class));
+					break;
 					
-					
+				case "Search":
+					startActivity(new Intent(MainActivity.this,
+							Activity_Search.class));
 					break;
 				default:
 					break;
@@ -100,13 +107,12 @@ public class MainActivity extends Activity implements OnClickListener {
 		// Inflate the menu items for use in the action bar
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.main_activity_actions, menu);
+		
 		MenuItem item = menu.findItem(R.id.action_share);
 
 		// Fetch and store ShareActionProvider
 		ShareActionProvider mShareActionProvider = (ShareActionProvider) item
 				.getActionProvider();
-
-		// Return true to display menu
 		return true;
 
 	}
@@ -115,9 +121,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	public boolean onOptionsItemSelected(MenuItem item) {
 
 		switch (item.getItemId()) {
-		case R.id.action_search:
-			Toast.makeText(this, "Search", Toast.LENGTH_SHORT).show();
-			return true;
+		
 		case R.id.action_always:
 			Toast.makeText(this, "Always", Toast.LENGTH_SHORT).show();
 			return true;

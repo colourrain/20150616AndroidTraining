@@ -1,24 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
-
-    <!-- Search, should appear as action button -->
-    <item
+<item
         android:id="@+id/action_search"
+        android:actionViewClass="android.widget.SearchView"
         android:icon="@drawable/abc_ic_search_api_mtrl_alpha"
-        android:showAsAction="ifRoom"
+        android:showAsAction="always"
         android:title="@string/action_search"/>
 
     <!-- Settings, should always be in the overflow -->
     <item
         android:id="@+id/action_always"
-        android:showAsAction="always"
+        android:showAsAction="ifRoom"
         android:title="always"/>
     <item
         android:id="@+id/action_share"
-        android:showAsAction="ifRoom"
-        android:title="share"
         android:actionProviderClass="android.widget.ShareActionProvider"
-        />
+        android:showAsAction="ifRoom"
+        android:title="share"/>
     <item
         android:id="@+id/action_withText"
         android:icon="@drawable/abc_ic_search_api_mtrl_alpha"
@@ -32,18 +30,16 @@
             <item
                 android:id="@+id/action_sub2"
                 android:icon="@android:drawable/ic_menu_sort_alphabetically"
-              
                 android:title="Net Activity"/>
-             <item
+            <item
                 android:id="@+id/action_sub3"
                 android:icon="@android:drawable/dark_header"
-              
                 android:title="Location Service"/>
-              <item
+            <item
                 android:id="@+id/action_sub4"
                 android:icon="@android:drawable/dark_header"
                 android:title="ViewPager"/>
-              <item
+            <item
                 android:id="@+id/action_sub5"
                 android:icon="@android:drawable/dark_header"
                 android:title="Drawer"/>

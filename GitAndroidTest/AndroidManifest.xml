@@ -30,6 +30,10 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
         </activity>
         <activity
             android:name=".Activity_Notification"
@@ -77,9 +81,37 @@
             android:name="com.example.gitandroidtest.drawlayout.Activity_DrawLayout"
             android:theme="@style/CustomActionBarTheme" >
         </activity>
-         <activity
+        <activity
             android:name="com.example.gitandroidtest.notification.Activity_Notification"
+            android:label="searchable"
             android:theme="@style/CustomActionBarTheme" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                
+               <!-- 
+                <data
+                    android:host="gizmos"
+                    android:scheme="example" />
+               
+                <data
+                    android:host="www.example.com"
+                    android:pathPrefix="gizmos"
+                    android:scheme="http" /> -->
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.example.gitandroidtest.search.Activity_Search"
+            android:launchMode="singleInstance"
+            android:theme="@style/CustomActionBarTheme" >
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
         </activity>
     </application>
 
