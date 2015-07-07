@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:custom="http://schemas.android.com/apk/res/com.example.gitandroidtest"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="center_horizontal" >
+    android:layout_gravity="center_horizontal"
+    tools:context=".customerview.Activity_CustomerView" >
 
     <Button
         android:id="@+id/btn_redraw"
@@ -44,7 +46,5 @@
         custom:labelPosition="right"
         custom:radius="20dp"
         custom:showPieText="true" />
-
-   
 
 </RelativeLayout>
