@@ -1,5 +1,6 @@
 package com.example.gitandroidtest;
 
+import com.example.gitandroidtest.compatible.activity_compatible;
 import com.example.gitandroidtest.contacts.Activity_Contact_Search;
 import com.example.gitandroidtest.customerview.Activity_CustomerView;
 import com.example.gitandroidtest.drawlayout.Activity_DrawLayout;
@@ -50,7 +51,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		setContentView(R.layout.activity_main);
 		edit = (EditText) findViewById(R.id.edit);
 		gv = (GridView) findViewById(R.id.gv_main);
-		final String[] datas = { "Access Contact", "Notification", "Search", "CustomerView", "e", "f" };
+		final String[] datas = { "Access Contact", "Notification", "Search", "CustomerView", "Compatible", "f" };
 		ListAdapter adapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, datas);
 
@@ -78,6 +79,10 @@ public class MainActivity extends Activity implements OnClickListener {
 					startActivity(new Intent(MainActivity.this,
 							Activity_CustomerView.class));
 					break;
+				case "Compatible":
+					startActivity(new Intent(MainActivity.this,
+							activity_compatible.class));
+					break;	
 				default:
 					break;
 				}
