@@ -1,6 +1,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/LinearLayout_gesture"
+    android:id="@+id/secondActivityLinearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
@@ -8,16 +8,10 @@
     tools:context="${relativePackage}.${activityClass}" >
 
     <Button
-        android:id="@+id/btn_gesture"
+        android:id="@+id/btn_service"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button" 
-        android:layout_marginBottom="50dp"
-        />
-
-    <com.example.gitandroidtest.gesture.myViewforGestureTest
-        android:id="@+id/myViewforGestureTest"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:onClick="onClick"
+        android:text="Start Service" />
 
 </LinearLayout>

@@ -5,9 +5,11 @@ import com.example.gitandroidtest.contacts.Activity_Contact_Search;
 import com.example.gitandroidtest.customerview.Activity_CustomerView;
 import com.example.gitandroidtest.drawlayout.Activity_DrawLayout;
 import com.example.gitandroidtest.gesture.Activity_Gesture;
+import com.example.gitandroidtest.input.Activity_Input;
 import com.example.gitandroidtest.location.Activity_Location;
 import com.example.gitandroidtest.notification.Activity_Notification;
 import com.example.gitandroidtest.search.Activity_Search;
+import com.example.gitandroidtest.service.Activity_Service;
 import com.example.gitandroidtest.viewpager.Activity_ViewPager;
 
 import android.animation.Animator.AnimatorListener;
@@ -52,7 +54,8 @@ public class MainActivity extends Activity implements OnClickListener {
 		setContentView(R.layout.activity_main);
 		edit = (EditText) findViewById(R.id.edit);
 		gv = (GridView) findViewById(R.id.gv_main);
-		final String[] datas = { "Access Contact", "Notification", "Search", "CustomerView", "Compatible", "Gesture" };
+		final String[] datas = { "Access Contact", "Notification", "Search", "CustomerView", "Compatible", "Gesture","Input"
+				,"Service"};
 		ListAdapter adapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, datas);
 
@@ -87,6 +90,14 @@ public class MainActivity extends Activity implements OnClickListener {
 				case "Gesture":
 					startActivity(new Intent(MainActivity.this,
 							Activity_Gesture.class));
+					break;	
+				case "Input":
+					startActivity(new Intent(MainActivity.this,
+							Activity_Input.class));
+					break;	
+				case "Service":
+					startActivity(new Intent(MainActivity.this,
+							Activity_Service.class));
 					break;	
 				default:
 					break;

@@ -9,6 +9,7 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Scroller;
 
 public class myViewforGestureTest extends View {
@@ -52,7 +53,9 @@ public class myViewforGestureTest extends View {
 		Paint paint = new Paint();
 		paint.setFlags(Paint.ANTI_ALIAS_FLAG);
 		canvas.drawLine(startX, startY, stopX, stopY, paint);
+	
 	}
+	
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
