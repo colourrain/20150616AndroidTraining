@@ -59,7 +59,7 @@ public class myViewforGestureTest extends View {
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
-		
+		gesture.onTouchEvent(event);
 		switch (event.getAction()) {
 		case MotionEvent.ACTION_DOWN:
 			if (tracker == null) {
@@ -69,7 +69,7 @@ public class myViewforGestureTest extends View {
 			}
 			tracker.addMovement(event);
 			scroller.startScroll(0, 0, (int)(-event.getX()), (int)(-event.getY()));
-			gesture.onTouchEvent(event);
+			
 			Log.i(TAG, "ontouchDown fired " + tracker.toString());
 			break;
 		case MotionEvent.ACTION_MOVE:
