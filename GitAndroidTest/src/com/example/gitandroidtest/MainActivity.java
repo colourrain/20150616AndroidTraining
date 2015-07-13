@@ -1,6 +1,7 @@
 package com.example.gitandroidtest;
 
 import com.example.gitandroidtest.awake.Activity_Awake;
+import com.example.gitandroidtest.battery.Activity_Battery;
 import com.example.gitandroidtest.compatible.activity_compatible;
 import com.example.gitandroidtest.contacts.Activity_Contact_Search;
 import com.example.gitandroidtest.customerview.Activity_CustomerView;
@@ -56,7 +57,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		edit = (EditText) findViewById(R.id.edit);
 		gv = (GridView) findViewById(R.id.gv_main);
 		final String[] datas = { "Access Contact", "Notification", "Search", "CustomerView", "Compatible", "Gesture","Input"
-				,"Service","Awake"};
+				,"Service","Awake","Battery"};
 		ListAdapter adapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, datas);
 
@@ -103,6 +104,10 @@ public class MainActivity extends Activity implements OnClickListener {
 				case "Awake":
 					startActivity(new Intent(MainActivity.this,
 							Activity_Awake.class));
+					break;	
+				case "Battery":
+					startActivity(new Intent(MainActivity.this,
+							Activity_Battery.class));
 					break;	
 				default:
 					break;

@@ -19,6 +19,13 @@ public class Activity_Service extends Activity {
 		
 	}
 	
+	@Override
+	public void onTrimMemory(int level) {
+		// TODO Auto-generated method stub
+		super.onTrimMemory(level);
+	
+	}
+	
 	public void onClick(View view){
 		Log.i("test", "Service started");
 		Intent intent=new Intent(this, backgroudService.class);
