@@ -38,7 +38,7 @@
                 android:resource="@xml/searchable" />
         </activity>
         <activity
-            android:name=".Activity_Notification"
+            android:name=".SecondActivity"
             android:label="@string/title_activity_second"
             android:parentActivityName=".Activity_Contact_Search"
             android:theme="@style/CustomActionBarTheme" >
