@@ -19,6 +19,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="17dp"
         android:onClick="onClick"
-        android:text="Battary" />
+        android:text="Battery" />
 
 </RelativeLayout>
