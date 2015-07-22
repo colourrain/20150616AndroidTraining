@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>  
-   <declare-styleable name="PieChart">
-       <attr name="showPieText" format="boolean" />
-       <attr name="labelPosition" format="enum">
-           <enum name="left" value="0"/>
-           <enum name="right" value="1"/>
-       </attr>
-       <attr name="radius" format="dimension"></attr>
-   </declare-styleable>
+<resources>
+
+    <declare-styleable name="PieChart">
+        <attr name="showPieText" format="boolean" />
+        <attr name="labelPosition" format="enum">
+            <enum name="left" value="0" />
+            <enum name="right" value="1" />
+        </attr>
+        <attr name="radius" format="dimension"></attr>
+    </declare-styleable>
+    <declare-styleable name="ButtonBarContainerTheme">
+        <attr name="metaButtonBarStyle" format="reference" />
+        <attr name="metaButtonBarButtonStyle" format="reference" />
+    </declare-styleable>
+
 </resources>

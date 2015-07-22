@@ -8,5 +8,8 @@
     <string name="action_settings">Config</string>
     <string name="search_hint">Input a search</string>
     <string name="title_activity_activity__awake">Activity_Awake</string>
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 
 </resources>
