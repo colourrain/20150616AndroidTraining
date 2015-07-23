@@ -6,15 +6,19 @@ import com.example.gitandroidtest.compatible.activity_compatible;
 import com.example.gitandroidtest.contacts.Activity_Contact_Search;
 import com.example.gitandroidtest.customerview.Activity_CustomerView;
 import com.example.gitandroidtest.drawlayout.Activity_DrawLayout;
+import com.example.gitandroidtest.fragment.FragmentActivity;
 import com.example.gitandroidtest.fullscreen.FullscreenActivity;
 import com.example.gitandroidtest.gesture.Activity_Gesture;
 import com.example.gitandroidtest.input.Activity_Input;
 import com.example.gitandroidtest.location.Activity_Location;
+import com.example.gitandroidtest.login.LoginActivity;
 import com.example.gitandroidtest.notification.Activity_Notification;
 import com.example.gitandroidtest.search.Activity_Search;
 import com.example.gitandroidtest.service.Activity_Service;
 import com.example.gitandroidtest.setting.SettingsActivity;
+import com.example.gitandroidtest.toast.ToastManager;
 import com.example.gitandroidtest.viewpager.Activity_ViewPager;
+import com.example.gitandroidtest.volley.VolleyHttpActivity;
 
 import android.animation.Animator.AnimatorListener;
 import android.app.Activity;
@@ -59,7 +63,8 @@ public class MainActivity extends Activity implements OnClickListener {
 		edit = (EditText) findViewById(R.id.edit);
 		gv = (GridView) findViewById(R.id.gv_main);
 		final String[] datas = { "Access Contact", "Notification", "Search", "CustomerView", "Compatible", "Gesture","Input"
-				,"Service","Awake","Battery","FullScreen","Setting","Login"};
+				,"Service","Awake","Battery","FullScreen","Setting","Login","Volley","Fragment","ViewPager"
+				,"Location","DrawLayout"};
 		ListAdapter adapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, datas);
 
@@ -123,7 +128,29 @@ public class MainActivity extends Activity implements OnClickListener {
 					startActivity(new Intent(MainActivity.this,
 							SettingsActivity.class));
 					break;
+				case "Volley":
+					startActivity(new Intent(MainActivity.this,
+							VolleyHttpActivity.class));
+					break;
+				case "Fragment":
+					startActivity(new Intent(MainActivity.this,
+							FragmentActivity.class));
+					break;
+				case "ViewPager":
+					startActivity(new Intent(MainActivity.this,
+							Activity_ViewPager.class));
+					break;
+				case "Location":
+					startActivity(new Intent(MainActivity.this,
+							Activity_Location.class));
+					break;
+				case "DrawLayout":
+					startActivity(new Intent(MainActivity.this,
+							Activity_DrawLayout.class));
+					ToastManager.show(MainActivity.this, "test DrawLayout");
+					break;
 				default:
+					
 					break;
 				}
 

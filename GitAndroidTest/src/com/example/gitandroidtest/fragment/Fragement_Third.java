@@ -1,10 +1,14 @@
-package com.example.gitandroidtest;
+package com.example.gitandroidtest.fragment;
 
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+
+import com.example.gitandroidtest.R;
+import com.example.gitandroidtest.R.id;
+import com.example.gitandroidtest.R.layout;
 
 import android.animation.Animator;
 import android.app.Activity;
@@ -69,8 +73,6 @@ public class Fragement_Third extends Fragment implements OnClickListener {
 				R.id.btn_fragment3_chooser);
 		Button btn_contact = (Button) getActivity().findViewById(
 				R.id.btn_fragment3_contact);
-		Button btn_internet = (Button) getActivity().findViewById(
-				R.id.btn_fragment3_internet);
 		Button btn_video=(Button) getActivity().findViewById(R.id.btn_fragment3_video);
 		iv=(ImageView) getActivity().findViewById(R.id.fragment3_tv);
 		video=(VideoView) getActivity().findViewById(R.id.fragment3_video);
@@ -83,7 +85,7 @@ public class Fragement_Third extends Fragment implements OnClickListener {
 		btn_chooser.setOnClickListener(this);
 		btn_contact.setOnClickListener(this);
 		btn_video.setOnClickListener(this);
-		btn_internet.setOnClickListener(this);
+		
 	}
 
 	@Override
@@ -120,18 +122,15 @@ public class Fragement_Third extends Fragment implements OnClickListener {
 		case R.id.btn_fragment3_phonecall:
 			Uri phone = Uri.parse("tel:021-62525955");
 			intent = new Intent(Intent.ACTION_DIAL, phone);
-
 			break;
 		case R.id.btn_fragment3_map:
 			Uri location = Uri
 					.parse("geo:0,0?q=1600+Amphitheatre+Parkway,+Mountain+View,+California");
 			intent = new Intent(Intent.ACTION_VIEW, location);
-
 			break;
 		case R.id.btn_fragment3_web:
 			Uri webpage = Uri.parse("http://www.baidu.com");
-			intent = new Intent(Intent.ACTION_VIEW, webpage);
-			
+			intent = new Intent(Intent.ACTION_VIEW, webpage);		
 			break;
 		case R.id.btn_fragment3_cam:
 			File imagefile = null;
@@ -146,7 +145,6 @@ public class Fragement_Third extends Fragment implements OnClickListener {
 				if(imagefile!=null){
 					//intent_cam.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(imagefile));
 				}
-
 				startActivityForResult(intent_cam, CAMERA_CAPTURE_REQUEST);
 			}
 			
@@ -162,20 +160,16 @@ public class Fragement_Third extends Fragment implements OnClickListener {
 			Intent intentcontact=new Intent(Intent.ACTION_PICK,Uri.parse("content://contacts"));
 			intentcontact.setType(Phone.CONTENT_TYPE);
 			startActivityForResult(intentcontact, PICK_CONTACT_REQUEST);
+			break;
 		case R.id.btn_fragment3_video:
 			new Thread(new Runnable() {
-				
 				@Override
 				public void run() {
 					Intent intent_video=new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
 					startActivityForResult(intent_video, VIDEO_CAPTURE_REQUEST);
 				}
 			}).start();
-		case R.id.btn_fragment3_internet:
-			startActivity(new Intent("AA"));
-
 			break;
-			
 		default:
 			break;
 		}
@@ -184,16 +178,12 @@ public class Fragement_Third extends Fragment implements OnClickListener {
 			List<ResolveInfo> activities = packageManager
 					.queryIntentActivities(intent, 0);
 			boolean isIntentSafe = activities.size() > 0;
-
 			// Start an activity if it's safe
 			if (isIntentSafe) {
 				startActivity(intent);
 			}
 		}
-		
-
 	}
-	
 	
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -225,9 +215,6 @@ public class Fragement_Third extends Fragment implements OnClickListener {
 		default:
 			break;
 		}
-		
-		
-		
 	}
 	String mCurrentPhotoPath;
 

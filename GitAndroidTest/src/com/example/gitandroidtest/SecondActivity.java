@@ -2,6 +2,8 @@ package com.example.gitandroidtest;
 
 import java.util.zip.Inflater;
 
+import com.example.gitandroidtest.fragment.FragmentActivity;
+
 import android.animation.Animator;
 import android.animation.Animator.AnimatorListener;
 import android.app.ActionBar;
@@ -152,7 +154,7 @@ public class SecondActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				Intent intent=new Intent(SecondActivity.this, FourthActivity.class);
+				Intent intent=new Intent(SecondActivity.this, FragmentActivity.class);
 				startActivity(intent);
 			}
 		});

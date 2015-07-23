@@ -1,4 +1,4 @@
-package com.example.gitandroidtest;
+package com.example.gitandroidtest.volley;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,6 +13,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 
+
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request.Method;
 import com.android.volley.RequestQueue;
@@ -24,6 +26,9 @@ import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.NetworkImageView;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.gitandroidtest.R;
+import com.example.gitandroidtest.R.id;
+import com.example.gitandroidtest.R.layout;
 
 import android.app.Activity;
 import android.content.Context;
@@ -48,7 +53,7 @@ import android.widget.ShareActionProvider;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class FifthActivity extends Activity implements OnClickListener {
+public class VolleyHttpActivity extends Activity implements OnClickListener {
 	final static String tag = "TestTag";
 
 	TextView tv;
@@ -60,7 +65,7 @@ public class FifthActivity extends Activity implements OnClickListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_fifth_internet);
+		setContentView(R.layout.activity_volley_internet);
 		tv = (TextView) findViewById(R.id.txt_fifth);
 		edit = (EditText) findViewById(R.id.edit);
 		iv = (ImageView) findViewById(R.id.image_fifth);
@@ -152,7 +157,7 @@ public class FifthActivity extends Activity implements OnClickListener {
 
 				@Override
 				public void onErrorResponse(VolleyError error) {
-					Toast.makeText(FifthActivity.this, "Load Failure" + error.toString(), Toast.LENGTH_SHORT).show();
+					Toast.makeText(VolleyHttpActivity.this, "Load Failure" + error.toString(), Toast.LENGTH_SHORT).show();
 				}
 			});
 			//Volley.newRequestQueue(FifthActivity.this).add(imgQ);

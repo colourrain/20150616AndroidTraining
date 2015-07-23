@@ -1,6 +1,11 @@
-package com.example.gitandroidtest;
+package com.example.gitandroidtest.fragment;
 
 import java.lang.ref.WeakReference;
+
+import com.example.gitandroidtest.R;
+import com.example.gitandroidtest.R.drawable;
+import com.example.gitandroidtest.R.id;
+import com.example.gitandroidtest.R.layout;
 
 import android.animation.Animator;
 import android.app.Fragment;

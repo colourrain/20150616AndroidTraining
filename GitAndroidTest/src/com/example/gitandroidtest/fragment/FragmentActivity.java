@@ -1,6 +1,10 @@
-package com.example.gitandroidtest;
+package com.example.gitandroidtest.fragment;
 
 import java.util.zip.Inflater;
+
+import com.example.gitandroidtest.R;
+import com.example.gitandroidtest.R.id;
+import com.example.gitandroidtest.R.layout;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -24,24 +28,21 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class FourthActivity extends Activity implements OnCheckedChangeListener{
+public class FragmentActivity extends Activity implements OnCheckedChangeListener{
 	TextView tv;
 	Button btn1, btn2, btn3;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_fourth_fragement);
+		setContentView(R.layout.activity_fragment);
 		RadioGroup rg = (RadioGroup) findViewById(R.id.rGroup_fragment);
 		rg.setOnCheckedChangeListener(this);
 		Intent intent=getIntent();
 		if(intent.getAction()==Intent.ACTION_SEND){
 			String text=intent.getStringExtra(Intent.EXTRA_TEXT);
-			Toast.makeText(FourthActivity.this, text, Toast.LENGTH_SHORT).show();
+			//Toast.makeText(FragmentActivity.this, text, Toast.LENGTH_SHORT).show();
 		}
-		
-		
-			
 	}
 
 	@Override

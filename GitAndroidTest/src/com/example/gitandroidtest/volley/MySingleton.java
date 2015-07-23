@@ -1,4 +1,4 @@
-package com.example.gitandroidtest;
+package com.example.gitandroidtest.volley;
 
 import android.content.Context;
 import android.graphics.Bitmap;
