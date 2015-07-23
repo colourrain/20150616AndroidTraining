@@ -1,25 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/frament3"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/frament3"
-    android:orientation="vertical"
-     android:gravity="center_horizontal"
-    android:background="@color/yellow"
-     >
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
 
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="This is Fragement3"
         android:layout_marginTop="12dp"
+        android:text="This is Fragement3"
         android:textSize="@dimen/abc_text_size_caption_material" />
 
-    <Button
-        android:id="@+id/btn_fragment3"
+    <ImageView
+        android:id="@+id/fragment3_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:src="@android:drawable/ic_input_add" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btn_fragment3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="File" />
+
+        <Button
+            android:id="@+id/btn_fragment3_phonecall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Call me" />
+
+        <Button
+            android:id="@+id/btn_fragment3_map"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Map" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btn_fragment3_web"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Web" />
+
+        <Button
+            android:id="@+id/btn_fragment3_cam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="camera" />
+
+        <Button
+            android:id="@+id/btn_fragment3_chooser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="chooser" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btn_fragment3_contact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="pick contact" />
+
+        <Button
+            android:id="@+id/btn_fragment3_video"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="video capture" />
+       
+    </LinearLayout>
+
+    <VideoView
+        android:id="@+id/fragment3_video"
+        android:layout_width="match_parent"
+        android:layout_height="100dp" />
 
 </LinearLayout>
